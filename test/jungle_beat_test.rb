@@ -16,14 +16,15 @@ class JungleBeatTest < Minitest::Test
     a = Node.new("pop")
     b = Node.new("doop")
     c = Node.new("noop")
+    appended_data = "beep"
 
     a.next_node = b
     b.next_node = c
     jb.head = a
-    jb.append("beep")
+    jb.append(appended_data)
 
     refute c.next_node.nil?
-    assert_equal "beep", c.next_node
+    assert_equal appended_data, c.next_node.data
   end
 
   def test_tail_can_be_found
