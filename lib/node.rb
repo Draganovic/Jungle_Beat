@@ -7,5 +7,12 @@ class Node
     @next_node = nil
   end
 
+  def count
+    if next_node
+      next_node.count + 1
+    else
+      1
+    end
+  end
+
 end
- 

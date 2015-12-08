@@ -31,6 +31,8 @@ class JungleBeat
     node
   end
 
-
+  def count
+    @head.count
+  end
 
 end

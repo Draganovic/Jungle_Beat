@@ -41,5 +41,18 @@ class JungleBeatTest < Minitest::Test
     assert_equal c, jb.find_tail
   end
 
+  def test_it_can_count
+    jb = JungleBeat.new("peep pop meep")
+    a = Node.new("peep")
+    b = Node.new("pop")
+    c = Node.new("meep")
+
+    jb.append(a)
+    jb.append(b)
+    jb.append(c)
+
+    assert_equal 3, jb.count
+  end
+
 
 end
