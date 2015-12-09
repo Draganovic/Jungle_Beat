@@ -15,11 +15,14 @@ class JungleBeat
 
   def append(data)
     node = Node.new(data)
-    @head = node if @head == nil
-    last = find_tail(@head)
-    last.next_node = node unless last == node
-    # iterate through list
-    #assign tail to node
+
+    if @head
+      @head.append(node)
+    else
+      @head = node
+    end
+    # last = find_tail(@head)
+    # last.next_node = node unless last == node
   end
 
 

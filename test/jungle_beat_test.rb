@@ -11,20 +11,20 @@ class JungleBeatTest < Minitest::Test
     assert jb
   end
 
-  def test_it_can_append
+  def test_it_can_append_mult_nodes
     jb = JungleBeat.new("pop doop noop")
-    a = Node.new("pop")
-    b = Node.new("doop")
-    c = Node.new("noop")
+    a = "pop"
+    b = "doop"
+    c = "noop"
     appended_data = "beep"
 
-    a.next_node = b
-    b.next_node = c
-    jb.head = a
+    jb.append(a)
+    jb.append(b)
+    jb.append(c)
     jb.append(appended_data)
 
-    refute c.next_node.nil?
-    assert_equal appended_data, c.next_node.data
+    assert_equal a, jb.head.data
+    assert_equal appended_data, jb.head.next_node.next_node.next_node.data
   end
 
   def test_tail_can_be_found
