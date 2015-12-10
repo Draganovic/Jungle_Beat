@@ -1,3 +1,5 @@
+require 'pry'
+
 class Node
   attr_accessor :data, :next_node
 
@@ -21,4 +23,15 @@ class Node
       @next_node = node
     end
   end
+
+  def include?(node)
+    if @data == node
+      true
+    elsif @next_node == nil
+      false
+    else
+      @next_node.include?(node)
+    end
+  end
+
 end

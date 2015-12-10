@@ -54,5 +54,59 @@ class JungleBeatTest < Minitest::Test
     assert_equal 3, jb.count
   end
 
+  def test_it_can_count_empty_list
+    jb = JungleBeat.new(nil)
+
+    assert_equal 0, jb.count
+  end
+
+  def test_it_can_prepend
+    jb = JungleBeat.new("pop doop noop")
+    a = "pop"
+    b = "doop"
+    c = "noop"
+    prepended_data = "beep"
+
+    jb.append(a)
+    jb.append(b)
+    jb.append(c)
+
+    assert_equal 1, jb.prepend(prepended_data)
+    assert_equal prepended_data, jb.head.data
+  end
+
+  def test_it_can_prepend_an_empty_list
+    jb = JungleBeat.new(nil)
+    data = "pop"
+
+    assert_equal 1, jb.prepend(data)
+    assert_equal 1, jb.count
+  end
+
+  def test_it_can_prepend_mult_values
+    skip
+    jb = JungleBeat.new(nil)
+    data = "pop meep doop"
+
+    assert_equal 3, jb.prepend(data)
+    assert_equal 3, jb.count
+  end
+  #
+  # def test_it_knows_if_something_is_included
+  #   jb = JungleBeat.new("pop doop noop")
+  #   head = Node.new("pop")
+  #   body = Node.new("doop")
+  #   tail = Node.new("noop")
+  #   not_included = Node.new("woop")
+  #
+  #   head.append(body)
+  #   body.append(tail)
+  #
+  #
+  #
+  #   refute jb.head.include?(not_included.data)
+    # assert jb.head.include?(body.data)
+    # assert head.include?(tail.data)
+    # refute head.include?(not_included.data)
 
 end

@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/jungle_beat'
 require './lib/node'
+require 'pry'
 
 class NodeTest < Minitest::Test
 
@@ -58,4 +59,18 @@ class NodeTest < Minitest::Test
     assert_equal appended_data, node.next_node.data
   end
 
+  def test_it_can_use_include?
+    head = Node.new("pop")
+    body = Node.new("doop")
+    tail = Node.new("noop")
+    not_included = Node.new("woop")
+
+    head.append(body)
+    body.append(tail)
+
+    assert head.include?(body.data)
+    assert head.include?(tail.data)
+    refute head.include?(not_included.data)
+  end
+  
 end

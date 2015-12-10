@@ -10,19 +10,16 @@ class JungleBeat
   end
 
   def jb_builder
-
+    
   end
 
   def append(data)
     node = Node.new(data)
-
     if @head
       @head.append(node)
     else
       @head = node
     end
-    # last = find_tail(@head)
-    # last.next_node = node unless last == node
   end
 
 
@@ -34,8 +31,28 @@ class JungleBeat
     node
   end
 
+  # def include?(node)
+  #   @head.include?(node)
+  # end
+
+  def prepend(data)
+    node = Node.new(data)
+    if @head
+      old_head = @head
+      @head = node
+      @head.next_node = old_head
+    else
+      @head = node
+    end
+    1
+  end
+
   def count
-    @head.count
+    if @head
+      @head.count
+    else
+      0
+    end
   end
 
 end
