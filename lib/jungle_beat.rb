@@ -39,15 +39,17 @@ class JungleBeat
   # end
 
   def prepend(data)
-    node = Node.new(data)
-    if @head
-      old_head = @head
-      @head = node
-      @head.next_node = old_head
-    else
-      @head = node
+    data.split.each do |beat|
+      node = Node.new(beat)
+      if @head
+        old_head = @head
+        @head = node
+        @head.next_node = old_head
+      else
+        @head = node
+      end
     end
-    1
+    .count
   end
 
   def count

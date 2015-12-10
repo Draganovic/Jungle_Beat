@@ -85,7 +85,6 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_it_can_prepend_mult_values
-    skip
     data = "pop meep doop"
 
     assert_equal 3, jb.prepend(data)
