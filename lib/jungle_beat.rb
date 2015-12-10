@@ -1,4 +1,5 @@
 require_relative './node'
+require 'pry'
 
 class JungleBeat
 
@@ -7,10 +8,13 @@ class JungleBeat
   def initialize(data)
     @data = data
     @head = nil
+    jb_builder
   end
 
   def jb_builder
-    
+    data = @data.to_s.split
+    data.each {|beat| append(beat)}
+    data.count
   end
 
   def append(data)
@@ -21,7 +25,6 @@ class JungleBeat
       @head = node
     end
   end
-
 
   def find_tail(node = nil)
     node = @head
