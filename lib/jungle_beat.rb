@@ -69,4 +69,12 @@ class JungleBeat
     end
   end
 
+  def all
+
+  end
+
+  def play
+    `say -r 500 -v Boing #{all}`
+  end
+
 end

@@ -78,7 +78,6 @@ class NodeTest < Minitest::Test
     body = Node.new("doop")
     tail = Node.new("noop")
 
-
     head.append(tail)
 
     assert_equal tail, head.next_node
@@ -87,6 +86,15 @@ class NodeTest < Minitest::Test
     assert_equal 3, head.count
     assert head.include?(body.data)
     assert_equal body, head.next_node
+  end
+
+  def test_it_can_return_one_beat
+    skip
+    head = Node.new("pop")
+
+    head.append(head)
+
+    assert_equal head.data, head.all
   end
 
 end

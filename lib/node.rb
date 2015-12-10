@@ -44,4 +44,6 @@ class Node
       @next_node.insert(next_position, node)
     end
   end
+
+
 end
