@@ -34,9 +34,9 @@ class JungleBeat
     node
   end
 
-  # def include?(node)
-  #   @head.include?(node)
-  # end
+  def include?(data)
+    @head.include?(data)
+  end
 
   def prepend(data)
     data.split.each do |beat|

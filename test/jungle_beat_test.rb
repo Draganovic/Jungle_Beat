@@ -114,21 +114,21 @@ class JungleBeatTest < Minitest::Test
     assert_equal 3, jb.count
   end
   #
-  # def test_it_knows_if_something_is_included
-  #   jb = JungleBeat.new("pop doop noop")
-  #   head = Node.new("pop")
-  #   body = Node.new("doop")
-  #   tail = Node.new("noop")
-  #   not_included = Node.new("woop")
-  #
-  #   head.append(body)
-  #   body.append(tail)
-  #
-  #
-  #
-  #   refute jb.head.include?(not_included.data)
-    # assert jb.head.include?(body.data)
-    # assert head.include?(tail.data)
-    # refute head.include?(not_included.data)
+  def test_it_knows_if_something_is_included
+    jb = JungleBeat.new("pop doop noop")
+    head = Node.new("pop")
+    body = Node.new("doop")
+    tail = Node.new("noop")
+    not_included = Node.new("woop")
+
+    head.append(body)
+    body.append(tail)
+
+
+
+    refute jb.include?(not_included.data)
+    assert jb.include?(body.data)
+    assert jb.include?(tail.data)
+  end
 
 end
