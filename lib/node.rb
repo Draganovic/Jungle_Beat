@@ -34,4 +34,14 @@ class Node
     end
   end
 
+  def insert(position, node)
+    next_position = position-1
+    if next_position == 0
+      old_node = next_node
+      @next_node = node
+      @next_node.next_node = old_node
+    else
+      @next_node.insert(next_position, node)
+    end
+  end
 end

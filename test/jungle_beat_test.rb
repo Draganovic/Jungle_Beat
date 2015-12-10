@@ -124,11 +124,23 @@ class JungleBeatTest < Minitest::Test
     head.append(body)
     body.append(tail)
 
-
-
     refute jb.include?(not_included.data)
     assert jb.include?(body.data)
     assert jb.include?(tail.data)
+  end
+
+  def test_it_can_insert_1_between_2_nodes
+    head = "pop"
+    body = "doop"
+    tail = "noop"
+
+    jb.append(head)
+    jb.append(tail)
+
+    jb.insert(1, body)
+
+    assert_equal 3, jb.count
+    assert jb.include?(body)
   end
 
 end

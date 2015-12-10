@@ -72,5 +72,21 @@ class NodeTest < Minitest::Test
     assert head.include?(tail.data)
     refute head.include?(not_included.data)
   end
-  
+
+  def test_it_can_insert_1_between_2_nodes
+    head = Node.new("pop")
+    body = Node.new("doop")
+    tail = Node.new("noop")
+
+
+    head.append(tail)
+
+    assert_equal tail, head.next_node
+    head.insert(1, body)
+
+    assert_equal 3, head.count
+    assert head.include?(body.data)
+    assert_equal body, head.next_node
+  end
+
 end

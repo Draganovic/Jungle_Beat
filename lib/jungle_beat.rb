@@ -60,4 +60,13 @@ class JungleBeat
     end
   end
 
+  def insert(position, data)
+    node = Node.new(data)
+    if @head
+      @head.insert(position, node)
+    else
+      @head = node
+    end
+  end
+
 end
