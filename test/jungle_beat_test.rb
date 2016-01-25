@@ -143,17 +143,18 @@ class JungleBeatTest < Minitest::Test
     assert jb.include?(body)
   end
 
-  def test_it_can_return_one_beat
-    skip
-    beat = "pop"
+  def test_it_can_return_beats
+    a = ("dop")
+    b = ("deep")
+    c = ("moop")
+    jb.append(a)
+    jb.append(b)
+    jb.append(c)
 
-    jb.append(beat)
-
-    assert_equal beat, jb.all.data
+    assert_equal "dop deep moop", jb.all
   end
 
   def test_it_can_return_all
-    skip
     jb = JungleBeat.new("pop doop noop")
     head = Node.new("pop")
     body = Node.new("doop")
@@ -166,17 +167,13 @@ class JungleBeatTest < Minitest::Test
     assert_equal 3, jb.count
   end
 
-
   def test_it_can_insert_multiple_nodes_in_a_big_list
-    skip
     jb = JungleBeat.new("pop doop noop pop zip meep tee")
 
-    jb.insert(4, "top room tap eet")
-    #should assert all == inserts return value
-    # assert_equal jb.all, jb.insert(4, "top room tap eet")
-
+    assert_equal "pop doop noop pop top room tap eet zip meep tee", jb.insert(4, "top room tap eet")
     assert_equal 11, jb.count
     assert jb.include?("top")
   end
+
 
 end

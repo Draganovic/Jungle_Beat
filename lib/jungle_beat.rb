@@ -1,5 +1,4 @@
 require_relative './node'
-require 'pry'
 
 class JungleBeat
 
@@ -24,6 +23,7 @@ class JungleBeat
     else
       @head = node
     end
+    .count
   end
 
   def find_tail(node = nil)
@@ -61,12 +61,27 @@ class JungleBeat
   end
 
   def insert(position, data)
-    node = Node.new(data)
-    if @head
-      @head.insert(position, node)
-    else
-      @head = node
+    sd = data.split
+    sd.each_with_index do |beat, index|
+      node = Node.new(beat)
+      if @head
+        index_val = position + index
+        @head.insert(index_val, node)
+      else
+        @head = node
+      end
     end
+    all
+  end
+
+  def all
+    all_beats = []
+    current_node = @head
+    while current_node != nil
+      all_beats << current_node.data
+      current_node = current_node.next_node
+    end
+    all_beats.join(" ")
   end
 
   def play
