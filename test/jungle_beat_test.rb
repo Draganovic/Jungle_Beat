@@ -17,7 +17,6 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_it_can_append_mult_nodes
-
     a = "pop"
     b = "doop"
     c = "noop"
@@ -78,10 +77,12 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_it_can_prepend_an_empty_list
+    jb = JungleBeat.new("beep deep meep")
     data = "pop"
 
     assert_equal 1, jb.prepend(data)
-    assert_equal 1, jb.count
+    assert_equal 4, jb.count
+    assert jb.include?("pop")
   end
 
   def test_it_can_prepend_mult_values
@@ -170,9 +171,33 @@ class JungleBeatTest < Minitest::Test
   def test_it_can_insert_multiple_nodes_in_a_big_list
     jb = JungleBeat.new("pop doop noop pop zip meep tee")
 
-    assert_equal "pop doop noop pop top room tap eet zip meep tee", jb.insert(4, "top room tap eet")
+    assert_equal "pop doop noop pop top room tap eet zip meep tee",
+
+    jb.insert(4, "top room tap eet")
+
     assert_equal 11, jb.count
     assert jb.include?("top")
+  end
+
+  def test_it_can_pop_a_node
+    jb = JungleBeat.new("pop doop noop pop zip meep tee")
+    jb.pop
+
+    assert_equal "pop doop noop pop zip meep", jb.all
+  end
+
+  def test_it_can_pop_multiple_nodes
+    jb = JungleBeat.new("pop doop noop pop zip meep tee")
+    jb.pop(3)
+
+    assert_equal "pop doop noop pop", jb.all
+  end
+
+  def test_it_can_pop_all_but_one_node
+    jb = JungleBeat.new("pop doop noop pop zip meep tee")
+    jb.pop(6)
+
+    assert_equal "pop", jb.all
   end
 
 

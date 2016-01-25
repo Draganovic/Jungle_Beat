@@ -84,6 +84,15 @@ class JungleBeat
     all_beats.join(" ")
   end
 
+  def pop(x = 1)
+    new_tot = count - x - 1
+    current_node = @head
+    new_tot.times do
+      current_node = current_node.next_node
+    end
+    current_node.next_node = nil
+  end
+
   def play
     `say -r 500 -v Boing #{all}`
   end
