@@ -200,5 +200,12 @@ class JungleBeatTest < Minitest::Test
     assert_equal "pop", jb.all
   end
 
+  def test_it_returns_the_head_if_all_nodes_are_removed
+    jb = JungleBeat.new("pop doop noop pop zip meep tee")
+    jb.pop(10)
+
+    assert_equal jb.head.data, jb.all
+  end
+
 
 end
