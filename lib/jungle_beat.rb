@@ -17,25 +17,47 @@ class JungleBeat
   end
 
   def append(data)
-    node = Node.new(data)
-    if @head
-      @head.append(node)
-    else
-      @head = node
+    data.split.each do |beat|
+      node = Node.new(beat)
+      current_node = head
+      if head
+        until current_node.next_node.nil?
+          current_node = current_node.next_node
+        end
+        current_node.next_node = node
+      else
+        @head = node
+      end
     end
-    .count
+    data.split.count
+  end
+
+  def prepend(data)
+    data.split.each do |beat|
+      node = Node.new(beat)
+      if head
+        old_head = head
+        @head = node
+        @head.next_node = old_head
+      else
+        @head = node
+      end
+    end
+    data.split.count
   end
 
   def find_tail(node = nil)
-    node = @head
+    node = head
     while node.next_node != nil
       node = node.next_node
     end
     node
   end
 
+
+
   def include?(beat)
-     current_node = @head
+    current_node = @head
 
     while current_node != nil
       return true if current_node.data == beat
@@ -43,43 +65,33 @@ class JungleBeat
     end
   end
 
-  def prepend(data)
-    data.split.each do |beat|
-      node = Node.new(beat)
-      if @head
-        old_head = @head
-        @head = node
-        @head.next_node = old_head
-      else
-        @head = node
-      end
-    end
-    .count
-  end
-
   def count
-    # condition ? one_method : other_method
-
-    @head ? @head.count : 0
-
-
-    # if @head
-    #   @head.count
-    # else
-    #   0
-    # end
+    counter = 1
+    current_node = head
+    if current_node
+      while current_node.next_node
+        counter += 1
+        current_node = current_node.next_node
+      end
+      counter
+    else
+      0
+    end
   end
 
   def insert(position, data)
     sd = data.split
     sd.each_with_index do |beat, index|
       node = Node.new(beat)
-      if @head
-        index_val = position + index
-        @head.insert(index_val, node)
-      else
-        @head = node
+      current_node = @head
+      current_pos = 0
+      index_val = position + index
+      until current_pos == index_val - 1
+        current_node = current_node.next_node
+        current_pos += 1
       end
+        node.next_node = current_node.next_node
+        current_node.next_node = node
     end
     all
   end

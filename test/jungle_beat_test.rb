@@ -44,18 +44,24 @@ class JungleBeatTest < Minitest::Test
     assert_equal c, jb.find_tail
   end
 
-  def test_it_can_count
-
-    a = Node.new("peep")
-    b = Node.new("pop")
-    c = Node.new("meep")
-
-    jb.append(a)
-    jb.append(b)
-    jb.append(c)
+  def test_it_can_count_nodes
+    jb = JungleBeat.new("beep deep meep")
 
     assert_equal 3, jb.count
   end
+
+  # def test_it_can_count
+  #
+  #   a = Node.new("peep")
+  #   b = Node.new("pop")
+  #   c = Node.new("meep")
+  #
+  #   jb.append(a)
+  #   jb.append(b)
+  #   jb.append(c)
+  #
+  #   assert_equal 3, jb.count
+  # end
 
   def test_it_can_count_empty_list
 
@@ -117,17 +123,10 @@ class JungleBeatTest < Minitest::Test
   #
   def test_it_knows_if_something_is_included
     jb = JungleBeat.new("pop doop noop")
-    head = Node.new("pop")
-    body = Node.new("doop")
-    tail = Node.new("noop")
-    not_included = Node.new("woop")
 
-    head.append(body)
-    body.append(tail)
-
-    refute jb.include?(not_included.data)
-    assert jb.include?(body.data)
-    assert jb.include?(tail.data)
+    refute jb.include?("hdsghd")
+    assert jb.include?("doop")
+    assert jb.include?("pop")
   end
 
   def test_it_can_insert_1_between_2_nodes
@@ -155,18 +154,6 @@ class JungleBeatTest < Minitest::Test
     assert_equal "dop deep moop", jb.all
   end
 
-  def test_it_can_return_all
-    jb = JungleBeat.new("pop doop noop")
-    head = Node.new("pop")
-    body = Node.new("doop")
-    tail = Node.new("noop")
-
-    head.append(body)
-    body.append(tail)
-    jb.all
-
-    assert_equal 3, jb.count
-  end
 
   def test_it_can_insert_multiple_nodes_in_a_big_list
     jb = JungleBeat.new("pop doop noop pop zip meep tee")
