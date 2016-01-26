@@ -207,12 +207,34 @@ class JungleBeatTest < Minitest::Test
     assert jb.play
   end
 
-  def test_it_can_play_at_default_rate
-    skip
+  def test_it_can_play_change_rate
     jb = JungleBeat.new("pop doop noop pop zip meep tee")
     jb.rate = 100
 
-    assert
+    assert_equal 100, jb.rate
   end
+
+  def test_it_can_return_rate
+    jb = JungleBeat.new("pop doop noop pop zip meep tee")
+    jb.rate = 1000
+
+    assert_equal 1000, jb.rate
+    assert_equal 500, jb.reset_rate
+  end
+
+  def test_it_has_default_voice_Boing
+    jb = JungleBeat.new("pop doop noop pop zip meep tee")
+
+    assert_equal "Boing", jb.voice
+  end
+
+
+  def test_it_can_change_voice
+    jb = JungleBeat.new("pop doop noop pop zip meep tee")
+    jb.voice = "Alice"
+
+    assert_equal "Alice", jb.voice
+  end
+
 
 end

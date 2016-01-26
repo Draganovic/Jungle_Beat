@@ -2,12 +2,22 @@ require_relative './node'
 
 class JungleBeat
 
-  attr_accessor :head
+  attr_accessor :head, :rate, :voice
 
   def initialize(data)
     @data = data
     @head = nil
     jb_builder
+    @rate = 500
+    @voice = "Boing"
+  end
+
+  def reset_voice
+    self.voice = "Boing"
+  end
+
+  def reset_rate
+    self.rate = 500
   end
 
   def jb_builder
@@ -95,8 +105,8 @@ class JungleBeat
         current_pos += 1
       end
 
-        node.next_node = current_node.next_node
-        current_node.next_node = node
+      node.next_node = current_node.next_node
+      current_node.next_node = node
     end
     all
   end
@@ -140,7 +150,8 @@ class JungleBeat
   end
 
   def play
-  `say -r 500  -v Boing #{all}`
+  `say -r #{rate}  -v #{voice} #{all}`
+    all.size
   end
 
 end
