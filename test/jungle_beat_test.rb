@@ -201,4 +201,18 @@ class JungleBeatTest < Minitest::Test
     assert_equal "noop", expected
   end
 
+  def test_it_can_play
+    jb = JungleBeat.new("pop doop noop pop zip meep tee")
+
+    assert jb.play
+  end
+
+  def test_it_can_play_at_default_rate
+    skip
+    jb = JungleBeat.new("pop doop noop pop zip meep tee")
+    jb.rate = 100
+
+    assert
+  end
+
 end

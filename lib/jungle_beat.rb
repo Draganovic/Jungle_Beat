@@ -21,11 +21,14 @@ class JungleBeat
       node = Node.new(beat)
       current_node = head
       if head
+
         until current_node.next_node.nil?
           current_node = current_node.next_node
         end
+
         current_node.next_node = node
       else
+
         @head = node
       end
     end
@@ -86,10 +89,12 @@ class JungleBeat
       current_node = @head
       current_pos = 0
       index_val = position + index
+
       until current_pos == index_val - 1
         current_node = current_node.next_node
         current_pos += 1
       end
+
         node.next_node = current_node.next_node
         current_node.next_node = node
     end
@@ -104,7 +109,6 @@ class JungleBeat
       all_beats << current_node.data
       current_node = current_node.next_node
     end
-
     all_beats.join(" ")
   end
 
@@ -120,7 +124,6 @@ class JungleBeat
   end
 
   def find(position, num_nodes)
-    # another unit
     jumps = position - 1
     current_node = @head
 
@@ -128,7 +131,6 @@ class JungleBeat
       current_node = current_node.next_node
     end
 
-    # one unit
     found = []
     num_nodes.times do
       current_node = current_node.next_node
@@ -138,7 +140,7 @@ class JungleBeat
   end
 
   def play
-    `say -r 100 -v Boing #{all}`
+  `say -r 500  -v Boing #{all}`
   end
 
 end
