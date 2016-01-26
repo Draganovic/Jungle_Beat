@@ -7,11 +7,13 @@ class Node
   end
 
   def count
-    if next_node
-      next_node.count + 1
-    else
-      1
-    end
+    next_node ? next_node.count + 1 : 1 
+
+    # if next_node
+    #   next_node.count + 1
+    # else
+    #   1
+    # end
   end
 
   def append(node)
@@ -22,18 +24,19 @@ class Node
     end
   end
 
-  def include?(node)
-    if @data == node
-      true
-    elsif @next_node == nil
-      false
-    else
-      @next_node.include?(node)
-    end
-  end
+  # def include?(node)
+  #   if @data == node
+  #     true
+  #   elsif @next_node == nil
+  #     false
+  #   else
+  #     @next_node.include?(node)
+  #   end
+  # end
 
   def insert(position, node)
     next_position = position-1
+
     if next_position == 0
       old_node = next_node
       @next_node = node
@@ -42,6 +45,5 @@ class Node
       @next_node.insert(next_position, node)
     end
   end
-
 
 end

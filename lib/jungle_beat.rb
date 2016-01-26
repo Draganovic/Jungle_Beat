@@ -34,8 +34,13 @@ class JungleBeat
     node
   end
 
-  def include?(data)
-    @head.include?(data)
+  def include?(beat)
+     current_node = @head
+
+    while current_node != nil
+      return true if current_node.data == beat
+      current_node = current_node.next_node
+    end
   end
 
   def prepend(data)
@@ -53,11 +58,16 @@ class JungleBeat
   end
 
   def count
-    if @head
-      @head.count
-    else
-      0
-    end
+    # condition ? one_method : other_method
+
+    @head ? @head.count : 0
+
+
+    # if @head
+    #   @head.count
+    # else
+    #   0
+    # end
   end
 
   def insert(position, data)
@@ -77,24 +87,46 @@ class JungleBeat
   def all
     all_beats = []
     current_node = @head
+
     while current_node != nil
       all_beats << current_node.data
       current_node = current_node.next_node
     end
+
     all_beats.join(" ")
   end
 
   def pop(x = 1)
     new_tot = count - x - 1
     current_node = @head
+
     new_tot.times do
       current_node = current_node.next_node
     end
+
     current_node.next_node = nil
   end
 
+  def find(position, num_nodes)
+    # another unit
+    jumps = position - 1
+    current_node = @head
+
+    jumps.times do
+      current_node = current_node.next_node
+    end
+
+    # one unit
+    found = []
+    num_nodes.times do
+      current_node = current_node.next_node
+      found << current_node.data
+    end
+    found.join(" ")
+  end
+
   def play
-    `say -r 500 -v Boing #{all}`
+    `say -r 100 -v Boing #{all}`
   end
 
 end

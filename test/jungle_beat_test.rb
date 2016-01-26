@@ -207,5 +207,11 @@ class JungleBeatTest < Minitest::Test
     assert_equal jb.head.data, jb.all
   end
 
+  def test_it_can_find_a_beat
+    jb = JungleBeat.new("pop doop noop pop zip meep tee")
+    expected = jb.find(2,1)
+
+    assert_equal "noop", expected
+  end
 
 end
