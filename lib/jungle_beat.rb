@@ -67,8 +67,6 @@ class JungleBeat
     node
   end
 
-
-
   def include?(beat)
     current_node = @head
 
